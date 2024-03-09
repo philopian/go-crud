@@ -1,11 +1,15 @@
 package initializers
 
-import "github.com/joho/godotenv"
+import (
+	"fmt"
+
+	"github.com/joho/godotenv"
+)
 
 func LoadEnvVariables() {
 	// Load environment variables from .env file
 	err := godotenv.Load()
 	if err != nil {
-		panic("Error loading .env file")
+		fmt.Println("no .env file, will use loaded environment values")
 	}
 }
