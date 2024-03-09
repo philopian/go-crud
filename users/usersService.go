@@ -40,11 +40,17 @@ func getUser(Id uuid.UUID) (*models.User, error) {
 }
 
 func updateUser(Id uuid.UUID, Username string, Password string) (*models.User, error) {
+	// Bcrypt the password
+	hashPassword, err := bcrypt.GenerateFromPassword([]byte(Password), bcrypt.DefaultCost)
+	if err != nil {
+		return nil, err
+	}
+
 	var user models.User
 	initializers.DB.First(&user, Id)
 
 	// Update a user in the DB
-	updatedUser := initializers.DB.Model(&user).Updates(models.User{Username: Username, Password: Password})
+	updatedUser := initializers.DB.Model(&user).Updates(models.User{Username: Username, Password: string(hashPassword)})
 
 	return &user, updatedUser.Error
 }
