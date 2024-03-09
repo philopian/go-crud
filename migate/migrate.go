@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/philopian/go-crud/initializers"
-	"github.com/philopian/go-crud/model"
+	"github.com/philopian/go-crud/models"
 )
 
 func init() {
@@ -11,5 +11,5 @@ func init() {
 }
 
 func main() {
-	initializers.DB.AutoMigrate(&model.User{})
+	initializers.DB.AutoMigrate(&models.User{})
 }

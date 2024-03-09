@@ -3,10 +3,13 @@
 
 
 ```shell
+# Create a sqlite db & does the migration
 $ make init
 
+# Develop
 $ make dev
+
+# Build
+$ make build
 ```
 
-
-```
